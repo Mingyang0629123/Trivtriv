@@ -1,0 +1,489 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+</head>
+<body>
+    <style>
+        #title {
+            font-size: 60px;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: rgb(0, 34, 51);
+        }
+        body {
+            background-color: rgb(93, 93, 201);
+        }
+        #player1 {
+            scale: 1.3;
+            position: absolute;
+            bottom: 30px;
+            left:  300px;
+        }
+        #player2 {
+            scale: 1.3;
+            position: absolute;
+            bottom: 30px;
+            left:  700px;
+        }
+
+        #player1-score {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 20px;
+            background-color: aqua;
+            padding-left: 50px;
+            padding-right: 50px;
+            border-radius: 20px;
+            position: absolute;
+            top: 300px;
+            left:312px;
+        }
+        #player2-score {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 20px;
+            background-color: aqua;
+            padding-left: 50px;
+            padding-right: 50px;
+            border-radius: 20px;
+            position: absolute;
+            top: 300px;
+            left:712px;
+        }
+        #question {
+            text-align: center;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: rgb(0, 0, 0);
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        #answer {
+            position: absolute;
+            left: 37%;
+            top: 80%;
+            scale: 2;
+            font-size: 10px;
+            
+        }
+        #playercurrent {
+            text-align: center;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: rgb(0, 0, 0);
+            padding: 5px;
+            border-radius: 10px;
+        }
+    </style>
+    <h1 id="title">Mingyang Game and I guess Kayden</h1>
+    <div>
+        
+        <img id="player1" src="Podium.png" alt="">
+        <h1 id="player1-score">Score: 1000</h1>
+        <img id="player2" src="Podium.png" alt="">
+        <h1 id="player2-score">Score: 1000</h1>
+    </div>
+    
+    <h1 id="question">*Insert Question*</h1>
+    <h1 id="playercurrent">Player one goes first</h1>
+    <div id="answer">
+        <button id="answers1">1</button>
+        <button id="answers2">2</button>
+        <button id="answers3">3</button>
+        <button id="answers4">4</button>
+    </div>
+    
+    <script>
+        const corrects = new Audio("Ding.mp3")
+        const player2win = new Audio("Player1Win.mp3")
+        const player1win = new Audio("Player1Win.mp3")
+        const answer1 = document.getElementById("answers1")
+        const answer2 = document.getElementById("answers2")
+        const answer3 = document.getElementById("answers3")
+        const answer4 = document.getElementById("answers4")
+        const question = document.getElementById("question")
+        var turnis = "player1"
+        const player1_score = document.getElementById("player1-score")
+        const player2_score = document.getElementById("player2-score")
+        const currentplayer = document.getElementById("playercurrent")
+        
+        var player1_real_score = 1000
+        var player2_real_score = 1000
+        answer1.addEventListener("click", () => {
+            if (answer1.classList.contains("correct")) {
+                console.log("correct")
+                if (turnis == "player1") {
+                    player1_real_score += 100
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score += 100
+                    turnis = "player1"
+                }
+                corrects.play()
+            }
+            else if (answer1.classList.contains("car_battery")) {
+                console.log("Car battery")
+
+                if (turnis == "player1") {
+                    player1_real_score -= 500
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score -= 500
+                    turnis = "player1"
+                }
+                const carbattery = new Audio("CARBATTERY.mp3")
+                carbattery.play()
+                
+            }
+            else {
+                console.log("Not correct")
+                if (turnis == "player1") {
+                    player1_real_score -= 100
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score -= 100
+                    turnis = "player1"
+                }
+                const lost = new Audio("LostSound.mp3")
+                lost.play()
+            }
+            clear()
+        })
+        answer2.addEventListener("click", () => {
+            if (answer2.classList.contains("correct")) {
+                console.log("correct")
+                if (turnis == "player1") {
+                    player1_real_score += 100
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score += 100
+                    turnis = "player1"
+                }
+                corrects.play()
+            }
+            else if (answer1.classList.contains("car_battery")) {
+                console.log("Car battery")
+
+                if (turnis == "player1") {
+                    player1_real_score -= 500
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score -= 500
+                    turnis = "player1"
+                }
+                const carbattery = new Audio("CARBATTERY.mp3")
+                carbattery.play()
+            }
+            else {
+                console.log("Not correct")
+                if (turnis == "player1") {
+                    player1_real_score -= 100
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score -= 100
+                    turnis = "player1"
+                }
+                const lost = new Audio("LostSound1.mp3")
+                lost.play()
+            }
+            clear()
+        })
+        answer3.addEventListener("click", () => {
+            if (answer3.classList.contains("correct")) {
+                console.log("correct")
+                if (turnis == "player1") {
+                    player1_real_score += 100
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score += 100
+                    turnis = "player1"
+                }
+                corrects.play()
+            }
+            else if (answer1.classList.contains("car_battery")) {
+                console.log("Car battery")
+
+                if (turnis == "player1") {
+                    player1_real_score -= 500
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score -= 500
+                    turnis = "player1"
+                }
+                const carbattery = new Audio("CARBATTERY.mp3")
+                carbattery.play()
+            }
+            else {
+                console.log("Not correct")
+                if (turnis == "player1") {
+                    player1_real_score -= 100
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score -= 100
+                    turnis = "player1"
+                }
+                const lost = new Audio("LostSound2.mp3")
+                lost.play()
+            }
+            clear()
+        })
+        answer4.addEventListener("click", () => {
+            if (answer4.classList.contains("correct")) {
+                console.log("correct")
+                if (turnis == "player1") {
+                    player1_real_score += 100
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score += 100
+                    turnis = "player1"
+                }
+                corrects.play()
+            }
+            else if (answer1.classList.contains("car_battery")) {
+                console.log("Car battery")
+
+                if (turnis == "player1") {
+                    player1_real_score -= 500
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score -= 500
+                    turnis = "player1"
+                }
+                const carbattery = new Audio("CARBATTERY.mp3")
+                carbattery.play()
+            }
+            else {
+                console.log("Not correct")
+                if (turnis == "player1") {
+                    player1_real_score -= 100
+                    turnis = "player2"
+                }
+                else {
+                    player2_real_score -= 100
+                    turnis = "player1"
+                }
+                const lost = new Audio("LostSound.mp3")
+                lost.play()
+            }
+            clear()
+        })
+        
+        function clear() {
+            player1_real_score -= 50
+            player2_real_score -= 50
+            answer1.classList.remove("correct")
+            answer1.classList.remove("car_battery")
+            answer2.classList.remove("correct")
+            answer2.classList.remove("car_battery")
+            answer3.classList.remove("correct")
+            answer3.classList.remove("car_battery")
+            answer4.classList.remove("correct")
+            answer4.classList.remove("car_battery")
+            askaquestion()
+            player1_score.innerText = `Score:${player1_real_score}`
+            player2_score.innerText = `Score:${player2_real_score}`
+            if (turnis == "player1") {
+                currentplayer.innerText = "Player one goes"
+                
+            }
+            else {
+                currentplayer.innerHTML = "Player two goes"
+            }
+            if (player1_real_score <= 0) {
+                player2win.play()
+                answer1.remove()
+                answer2.remove()
+                answer3.remove()
+                answer4.remove()
+                question.innerText = "Player two wins"
+                currentplayer.remove()
+            }
+            else if (player2_real_score <= 0) {
+                player1win.play()
+                answer1.remove()
+                answer2.remove()
+                answer3.remove()
+                answer4.remove()
+                question.innerText = "Player one wins"
+                currentplayer.remove()
+            }
+        }
+        
+        function askaquestion() {
+            const questionchance = Math.floor(Math.random()* 16 + 1)
+            console.log(questionchance)
+            if (questionchance == 1) {
+                question.innerText = "Translate this meaning: Je peux danser"
+                answer1.innerText = "I like dancing"
+                answer2.innerText = "I do dance"
+                answer3.innerText = "I want to dance"
+                answer4.innerText = "I can dance"
+                answer4.classList.add("correct")
+                answer3.classList.add("car_battery")
+            }
+            if (questionchance == 2) {
+                question.innerText = "Je veux: meaning"
+                answer1.innerText = "I want"
+                answer2.innerText = "I can"
+                answer3.innerText = "I will"
+                answer4.innerText = "I would"
+                answer1.classList.add("correct")
+                answer4.classList.add("car_battery")
+            }
+            if (questionchance == 3) {
+                question.innerText = "I dunno about this one, I feel like a free point"
+                answer1.innerText = "Free"
+                answer2.innerText = "Free"
+                answer3.innerText = "Free"
+                answer4.innerText = "Free"
+                answer1.classList.add("correct")
+                answer2.classList.add("correct")
+                answer3.classList.add("correct")
+                answer4.classList.add("correct")
+            }
+            if (questionchance == 4) {
+                question.innerText = "Est-ce que je peux allé au toilletes: MEANING"
+                answer1.innerText = "Can I go to the washroom"
+                answer2.innerText = "May I go to the washroom"
+                answer3.innerText = "Can I go to the toilets"
+                answer4.innerText = "May I go to the toilets"
+                answer4.classList.add("correct")
+                answer3.classList.add("car_battery")
+            }
+            if (questionchance == 5) {
+                question.innerText = "Kayden est ne ici pas: Meaning"
+                answer1.innerText = "Kayden is here"
+                answer2.innerText = "Kayden is not here"
+                answer3.innerText = "Kayden is made out of ice"
+                answer4.innerText = "Kayden is ice"
+                answer2.classList.add("correct")
+                answer1.classList.add("car_battery")
+            }
+            if (questionchance == 6) {
+                question.innerText = "I don't like school"
+                answer1.innerText = "Je deteste l'ecole"
+                answer2.innerText = "Je n'aime pas school"
+                answer3.innerText = "Je n'aime pas l'ecole"
+                answer4.innerText = "Je deteste school"
+                answer3.classList.add("correct")
+                answer2.classList.add("car_battery")
+            }
+            if (questionchance == 7) {
+                question.innerText = "What is: Mingyang is in a car with his dad "
+                answer1.innerText = "Mingyang est un voiture avec il papa"
+                answer2.innerText = "Mingyang manage un voiture avec il papa"
+                answer3.innerText = "Mingyang est en un voiture avec il papa"
+                answer4.innerText = "Mingyang est en un voiture avec son papa"
+                answer4.classList.add("correct")
+                answer3.classList.add("car_battery")
+            }
+            if (questionchance == 8) {
+                question.innerText = "What is: Plane "
+                answer1.innerText = "Avion"
+                answer2.innerText = "Anvion"
+                answer3.innerText = "Planes"
+                answer4.innerText = "Aerosmith"
+                answer1.classList.add("correct")
+                answer2.classList.add("car_battery")
+            }
+
+            if (questionchance == 9) {
+                question.innerText= "Sometimes I dream about cheese, that makes me think, what's cheese in french"
+                answer1.innerText = "Cheesit"
+                answer2.innerText = "Fromamge"
+                answer3.innerText = "Fromages"
+                answer4.innerText = "Fromage"
+                answer4.classList.add("correct")
+                answer3.classList.add("car_battery")
+            }
+            if (questionchance == 10) {
+                question.innerText= "What is: I travel to France"
+                answer1.innerText = "Je voyager au France"
+                answer2.innerText = "Je voyager France"
+                answer3.innerText = "Je voyager au Frabce"
+                answer4.innerText = "Je voyager Francais"
+                answer2.classList.add("correct")
+                answer4.classList.add("car_battery")
+            }
+            if (questionchance == 11) {
+                question.innerText= "What is: Yash est un grand personnelle"
+                answer1.innerText = "Yash is a big man"
+                answer2.innerText = "Yash is a small person"
+                answer3.innerText = "Yash is large"
+                answer4.innerText = "Yash is a big person"
+                answer4.classList.add("correct")
+                answer2.classList.add("car_battery")
+            }
+            if (questionchance == 12) {
+                question.innerText= "What is: Canada"
+                answer1.innerText = "I don't really know at the moment"
+                answer2.innerText = "I think uhhh uhhh it's uhhh Canbaba"
+                answer3.innerText = "Canada Duh"
+                answer4.innerText = "CEnada"
+                answer3.classList.add("correct")
+                answer4.classList.add("car_battery")
+            }
+            if (questionchance == 13) {
+                question.innerText= "What is: When is mingyang birthday in french"
+                answer1.innerText = "Juin 28"
+                answer2.innerText = "Juin 30"
+                answer3.innerText = "Juin 29"
+                answer4.innerText = "Bro do I care about Ming"
+                answer3.classList.add("correct")
+                
+                answer4.classList.add("car_battery")
+            }
+            if (questionchance == 14) {
+                question.innerText= "RISKY ROUND: What is South America in french"
+                answer1.innerText = "American south"
+                answer2.innerText = "Americuque suds"
+                answer3.innerText = "Amerique nord"
+                answer4.innerText = "Amerique sud"
+                answer4.classList.add("correct")
+                
+                answer2.classList.add("car_battery")
+                answer3.classList.add("car_battery")
+                answer1.classList.add("car_battery")
+            }
+            if (questionchance == 15) {
+                question.innerText= "RISKY ROUND: What is: je ne parle pas Français"
+                answer1.innerText = "I can't speak french"
+                answer2.innerText = "I cannot speak francais"
+                answer3.innerText = "I speak french"
+                answer4.innerText = "I am french"
+                answer1.classList.add("correct")
+                
+                answer3.classList.add("car_battery")
+            }
+
+            if (questionchance == 16) {
+                question.innerText= "RISKY ROUND: What is: The verb etre conjugated to ils"
+                answer1.innerText = "Avons"
+                answer2.innerText = "vont"
+                answer3.innerText = "etre"
+                answer4.innerText = "sont"
+                answer4.classList.add("correct")
+                
+                answer2.classList.add("car_battery")
+                answer3.classList.add("car_battery")
+                answer1.classList.add("car_battery")
+            }
+        }
+        askaquestion()
+        
+    </script>
+</body>
+</html>
+
